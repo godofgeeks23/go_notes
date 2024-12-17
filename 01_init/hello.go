@@ -3,6 +3,7 @@ package main
 // import modules
 import "fmt"
 
+// hello function
 func Hello() string {
 	return "Hello, World!"
 }
