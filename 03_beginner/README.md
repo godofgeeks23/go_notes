@@ -8,8 +8,7 @@ go is garbage collected
 go is not a pure OOP language
 
 Numeric data types in go - 
-
-signed
-unsigned
-float
-complex
+- signed
+- unsigned
+- float
+- complex
