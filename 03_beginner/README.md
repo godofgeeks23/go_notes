@@ -7,7 +7,7 @@ go is strongly and statically typed
 go is garbage collected
 go is not a pure OOP language
 
-NumNumeric data types in go - 
+Numeric data types in go - 
 
 signed
 unsigned
