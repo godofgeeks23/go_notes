@@ -42,6 +42,6 @@ func main() {
 	http.HandleFunc("/about", aboutHandler)
 	http.HandleFunc("/user", userHandler)
 
-	fmt.Println("Starting server on :3000")
+	fmt.Println("Starting server on port 3000")
 	log.Fatal(http.ListenAndServe(":3000", nil))
 }
