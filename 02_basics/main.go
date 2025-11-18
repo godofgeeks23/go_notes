@@ -7,7 +7,9 @@ compilation time: go > compiled lang
 - garbage collected
 - not a pure OOP language
 
-Basic data types in go -
+everyrthing is a type in golang
+
+Basic data types-
 bool
 string
 int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr
@@ -15,6 +17,11 @@ byte // alias for uint8
 rune // alias for int32, represents a Unicode code point
 float32 float64
 complex64 complex128
+
+array slice maps
+struct
+pointers
+function channel
 
 */
 
@@ -46,6 +53,7 @@ func main() {
 	fmt.Println("Hello, World!")
 	fmt.Println("My favorite number is", rand.Intn(10))
 	i := 42
+	fmt.Printf("Type of i is %T", i)
 	fmt.Println(i, c, python, java)
 	fmt.Println("pi =", math.Pi) // a name is exported if it begins with a capital letter
 
