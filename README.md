@@ -1,4 +1,6 @@
 # go (golang) notes
 
-Personal go notes for reference and revision
+Code snippets from my personal go learning journey.
 
+- Is Go object oriented?
+- 
