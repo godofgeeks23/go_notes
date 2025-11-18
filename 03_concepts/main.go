@@ -18,6 +18,7 @@ func main() {
 		sum += i
 	}
 	fmt.Println("sum", sum)
+	fmt.Println("sum squared = ", pow(float64(sum), 2, 99999))
 
 	sum = 1
 	for sum < 1000 {

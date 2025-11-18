@@ -25,7 +25,7 @@ func aboutHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func userHandler(w http.ResponseWriter, r *http.Request) {
-	// Example: Just return a fixed user JSON
+	// return a fixed user JSON
 	user := struct {
 		ID   int    `json:"id"`
 		Name string `json:"name"`
