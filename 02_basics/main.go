@@ -34,9 +34,10 @@ import (
 )
 
 // variables in go are always initialized to their zero value if not explicitly initialized
+// default zero values - 0 for numbers, false for booleans, "" for strings, nil for pointers/slices/maps
 var c, python, java bool // var declares a list of variables in an scope
 
-var k, z int = 8, 10 // this is valid, k is initialized to 8
+var k, z int = 8, 10 // this is valid, multiple assignment
 // k:= 8 - this is not valid in package scope. can only be done in function scope
 
 const Pi = 3.14
