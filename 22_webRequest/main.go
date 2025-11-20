@@ -7,7 +7,8 @@ import (
 	"net/url"
 )
 
-const myURL = "https://backend.reconaid.in/"
+const myURL = "https://backend.reconaid.in"
+const customURL = "https://localhost:3000/posts?filter=today&sortby=recent"
 
 func main() {
 	res, err := http.Get(myURL)
@@ -23,9 +24,8 @@ func main() {
 		fmt.Println(err)
 		panic(err)
 	}
-	fmt.Println("response - ", string(dataBytes))
+	fmt.Println("GET response - ", string(dataBytes))
 
-	result, _ := url.Parse(myURL)
-	fmt.Println(result.Scheme, result.Host, result.Path, result.Port(), result.RawQuery)
-
+	result, _ := url.Parse(customURL)
+	fmt.Printf("scheme - %v\nhost - %v\npath - %v\nport - %v\nraw query - %v\n", result.Scheme, result.Host, result.Path, result.Port(), result.RawQuery)
 }
