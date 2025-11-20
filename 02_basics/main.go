@@ -7,7 +7,7 @@ compilation time: go > compiled lang
 - garbage collected
 - not a pure OOP language
 
-everyrthing is a type in golang
+everything is a type in golang
 
 Basic data types-
 bool
