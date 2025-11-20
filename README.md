@@ -2,7 +2,7 @@
 
 Notes from my personal go learning journey.
 
-## why learn go
+## features
 - binary executable
 - minimalist
 - automatic garbage collection
