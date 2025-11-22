@@ -26,6 +26,11 @@ func main() {
 	}
 	fmt.Println("GET response - ", string(dataBytes))
 
-	result, _ := url.Parse(customURL)
+	// url parsing
+	result, err := url.Parse(customURL)
+	if err != nil {
+		fmt.Println("error in url parsing -", err)
+		panic(err)
+	}
 	fmt.Printf("scheme - %v\nhost - %v\npath - %v\nport - %v\nraw query - %v\n", result.Scheme, result.Host, result.Path, result.Port(), result.RawQuery)
 }
