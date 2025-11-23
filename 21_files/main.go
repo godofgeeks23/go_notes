@@ -9,7 +9,9 @@ import (
 func main() {
 	fmt.Println("files")
 
-	file, err := os.Create("./sample.txt")
+	fileName := "./sample.txt"
+
+	file, err := os.Create(fileName)
 	if err != nil {
 		fmt.Println("error:", err)
 		panic(err)
@@ -24,7 +26,7 @@ func main() {
 	defer file.Close()
 
 	// reading a file
-	dataByte, err := os.ReadFile("./sample.txt")
+	dataByte, err := os.ReadFile(fileName)
 	if err != nil {
 		fmt.Println("error:", err)
 		panic(err)
