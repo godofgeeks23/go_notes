@@ -7,13 +7,6 @@ import (
 	"syscall"
 )
 
-/*
-container primary components-
-namespaces - what a process can see. created with syscalls. restricting the view of the container of host machine
-change groups - chroot
-control groups - cgroup - what you can use, filesystem interface
-*/
-
 func run() {
 	fmt.Printf("[run()] running: %v (PID:%v)\n", os.Args[2:], os.Getpid())
 	cmd := exec.Command("/proc/self/exe", append([]string{"child"}, os.Args[2:]...)...)
