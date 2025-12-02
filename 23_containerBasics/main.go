@@ -55,7 +55,7 @@ func cg() {
 	cgroups := "/sys/fs/cgroup/"
 	myCgroupPath := filepath.Join(cgroups, cgroupName)
 
-	// Create the directory - the kernel automatically detects this mkdir and creates the cgroup structure populated with files
+	// create the directory - the kernel automatically detects this mkdir and creates the cgroup structure populated with files
 	err := os.Mkdir(myCgroupPath, 0755)
 	if err != nil && !os.IsExist(err) {
 		panic(err)
