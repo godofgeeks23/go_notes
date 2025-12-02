@@ -61,13 +61,13 @@ func cg() {
 		panic(err)
 	}
 
-	// 2. Set the limit - the file is named 'pids.max' and sits directly in your folder
+	// set the limit - the file is named 'pids.max' and sits directly in your folder
 	must(os.WriteFile(filepath.Join(myCgroupPath, "pids.max"), []byte("20"), 0700))
 
-	// 3. Notify on release - removes the new cgroup in place after the container exits
+	// notify on release - removes the new cgroup in place after the container exits
 	must(os.WriteFile(filepath.Join(myCgroupPath, "notify_on_release"), []byte("1"), 0700))
 
-	// 4. Add the current process - add this process to be controlled by this cgroup
+	// add the current process - add this process to be controlled by this cgroup
 	must(os.WriteFile(filepath.Join(myCgroupPath, "cgroup.procs"), []byte(strconv.Itoa(os.Getpid())), 0700))
 
 }
