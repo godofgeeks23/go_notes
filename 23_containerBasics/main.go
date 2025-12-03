@@ -65,7 +65,7 @@ func cg() {
 	must(os.WriteFile(filepath.Join(myCgroupPath, "pids.max"), []byte("20"), 0700))
 
 	// notify on release - removes the new cgroup in place after the container exits
-	must(os.WriteFile(filepath.Join(myCgroupPath, "notify_on_release"), []byte("1"), 0700))
+	// must(os.WriteFile(filepath.Join(myCgroupPath, "notify_on_release"), []byte("1"), 0700))
 
 	// add the current process - add this process to be controlled by this cgroup
 	must(os.WriteFile(filepath.Join(myCgroupPath, "cgroup.procs"), []byte(strconv.Itoa(os.Getpid())), 0700))
