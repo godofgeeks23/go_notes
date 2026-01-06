@@ -16,9 +16,9 @@ func run() {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 
-	// this will create a new namespace for the process of its own so that it can't see what going on in the parent host
 	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Cloneflags: syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID,
+		Cloneflags:   syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID | syscall.CLONE_NEWNS,
+		Unshareflags: syscall.CLONE_NEWNS,
 	}
 
 	if err := cmd.Run(); err != nil {
@@ -29,12 +29,12 @@ func run() {
 
 func child() {
 	fmt.Printf("[child()] running %v (PID:%v)\n", os.Args[2:], os.Getpid())
-
 	cg()
 
 	syscall.Sethostname([]byte("container"))
-	syscall.Chroot("container-fs/filesystem")
+	syscall.Chroot("container-fs")
 	syscall.Chdir("/")
+
 	syscall.Mount("proc", "proc", "proc", 0, "")
 
 	cmd := exec.Command(os.Args[2], os.Args[3:]...)
@@ -51,25 +51,25 @@ func child() {
 }
 
 func cg() {
-	cgroupName := "avi"
+	cgroupName := "mytestcgroup"
 	cgroups := "/sys/fs/cgroup/"
 	myCgroupPath := filepath.Join(cgroups, cgroupName)
 
-	// create the directory - the kernel automatically detects this mkdir and creates the cgroup structure populated with files
 	err := os.Mkdir(myCgroupPath, 0755)
 	if err != nil && !os.IsExist(err) {
 		panic(err)
 	}
 
-	// set the limit - the file is named 'pids.max' and sits directly in your folder
-	must(os.WriteFile(filepath.Join(myCgroupPath, "pids.max"), []byte("20"), 0700))
+	must(os.WriteFile(filepath.Join(myCgroupPath, "pids.max"), []byte("10"), 0700))
 
-	// notify on release - removes the new cgroup in place after the container exits
-	// must(os.WriteFile(filepath.Join(myCgroupPath, "notify_on_release"), []byte("1"), 0700))
-
-	// add the current process - add this process to be controlled by this cgroup
 	must(os.WriteFile(filepath.Join(myCgroupPath, "cgroup.procs"), []byte(strconv.Itoa(os.Getpid())), 0700))
 
+}
+
+func must(err error) {
+	if err != nil {
+		panic(err)
+	}
 }
 
 func main() {
@@ -81,11 +81,5 @@ func main() {
 		child()
 	default:
 		panic("bad command")
-	}
-}
-
-func must(err error) {
-	if err != nil {
-		panic(err)
 	}
 }
