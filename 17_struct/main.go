@@ -17,6 +17,12 @@ func main() {
 	// go does not have classes, so no inheritance/super/parent
 
 	avi := User{"Avi", "aviralji4@gmail.com", true, 24}
+	anu := User{
+		Name:   "Anu",
+		Email:  "anu30@gmail.com",
+		Status: false,
+		Age:    22}
 	fmt.Println(avi)
 	fmt.Println(avi.Name)
+	fmt.Println(anu)
 }
