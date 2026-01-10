@@ -33,7 +33,17 @@ func requestLogger(next http.HandlerFunc) http.HandlerFunc {
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello from server")
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	resp := Response{
+		Error:   false,
+		Data:    nil,
+		Message: "api server is live",
+	}
+	json.NewEncoder(w).Encode(resp)
 }
 
 func userHandler(w http.ResponseWriter, r *http.Request) {
@@ -55,7 +65,7 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 	resp := Response{
 		Error:   false,
 		Message: "Success",
-		Data:    &u,
+		Data:    u,
 	}
 	json.NewEncoder(w).Encode(resp)
 }
@@ -78,7 +88,7 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 	resp := Response{
 		Error:   false,
 		Message: "Succes",
-		Data:    &dog,
+		Data:    dog,
 	}
 	json.NewEncoder(w).Encode(resp)
 }
@@ -89,6 +99,7 @@ func main() {
 	http.HandleFunc("/", requestLogger(rootHandler))
 	http.HandleFunc("/user", requestLogger(userHandler))
 	http.HandleFunc("/random", requestLogger(randomHandler))
+
 	fmt.Println("Server starting at " + Port)
 
 	err := http.ListenAndServe(Port, nil)
