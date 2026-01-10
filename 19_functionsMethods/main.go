@@ -35,4 +35,6 @@ func main() {
 
 	var u = User{"avi", "aviral@go.dev", 24}
 	u.GetAge()
+	u.SetAge()
+	fmt.Println(u)
 }
