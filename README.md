@@ -21,4 +21,4 @@ Notes from my personal go learning journey.
 ## FAQs - 
 
 - Is Go object oriented?
-- 
+- go code: packages -> modules 
