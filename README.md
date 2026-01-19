@@ -29,4 +29,4 @@ Notes from my personal go-ing journey.
 `go mod edit -replace <module-path>=<local-path>`
 example - 
 `go mod edit -replace example.com/greetings=../greetings`
-- 
+- ending a file's name with `_test.go` tells the `go test` command that this file contains test functions
