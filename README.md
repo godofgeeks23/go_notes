@@ -21,4 +21,7 @@ Notes from my personal go learning journey.
 ## FAQs - 
 
 - Is Go object oriented?
-- go code: packages -> modules 
+- go code: modules -> packages
+- package - made up of all the files in directory
+- each module has a go.mod file 
+- go mod init <module-name/url> 
