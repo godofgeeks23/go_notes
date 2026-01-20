@@ -48,7 +48,7 @@ func CacheMiddleware(rdb *redis.Client) func(http.HandlerFunc) http.HandlerFunc 
 				return
 			}
 
-			rec := &responseRecorder{ResponseWriter: w, body: []byte{}}
+			rec := &responseRecorder{ResponseWriter: w, body: []byte{}, status: 200}
 			next(rec, r)
 
 			if rec.status == http.StatusOK {
