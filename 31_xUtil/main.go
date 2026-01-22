@@ -43,7 +43,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	systemPrompt := "you are a command generator for a linux based os. user will submit a action that he wants to perform. generate the command needed to run to do the action. return only the command - nothing else (no explanation, no comments or anything - just the required command)"
+	systemPrompt := "you are a command generator for a linux based os (ubuntu 2204). user will submit a action that he wants to perform. generate the command needed to run to do the action. return only the command - nothing else (no explanation, no comments or anything - just the required command). you can use pipe |, or any other combination of commands too."
 
 	config := &genai.GenerateContentConfig{
 		SystemInstruction: genai.NewContentFromText(systemPrompt, genai.RoleUser),
@@ -78,7 +78,7 @@ func main() {
 		log.Fatal("Generated command was empty")
 	}
 
-	out, err := exec.Command(cmdParts[0], cmdParts[1:]...).CombinedOutput()
+	out, err := exec.Command("sh", "-c", generatedCmd).CombinedOutput()
 	if err != nil {
 		fmt.Printf("Error: %s\n", err)
 		fmt.Printf("Output: %s", string(out))
